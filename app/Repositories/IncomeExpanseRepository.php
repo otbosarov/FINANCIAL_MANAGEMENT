@@ -23,6 +23,7 @@ class IncomeExpanseRepository implements IncomeExpanseInterface
         $isInput = request('isInput');  // input output
         $startDate = request('startDate');
         $endDate = request('endDate');
+        $id = request('type_id');
         $income =  IncomeExpanse::select(
             'income_expanses.id',
             'income_expanses.value',
@@ -49,6 +50,10 @@ class IncomeExpanseRepository implements IncomeExpanseInterface
                     $endDate
                 ]);
             })
+            ->when($id,function($query)use($id){
+                $query->where('id',$id);
+            })
+
             ->where('income_expanses.user_id', Auth::user()->id)
             ->join('types', 'types.id', '=', 'income_expanses.type_id')
             ->join('users', 'users.id', '=', 'income_expanses.user_id')

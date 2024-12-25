@@ -6,6 +6,9 @@ use App\Http\Requests\TypeRequest;
 use App\Http\Resources\TypeResource;
 use App\Interfaces\TypeInterface;
 use App\Models\Type;
+use Illuminate\Http\Request;
+
+
 
 class TypeRepository implements TypeInterface{
     public function index()
