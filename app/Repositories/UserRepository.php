@@ -107,7 +107,7 @@ class UserRepository implements UserInterface{
 
         return response()->json([
             'data' => [
-                'user' => Auth::user(),
+                'user' =>auth()->user(),
                 'Balans' => number_format( $balans->total_value),
                 'kirim_qiymat' =>number_format( $incomeInput),
                 'chiqim_qiymat' =>number_format( $incomeOutPut)

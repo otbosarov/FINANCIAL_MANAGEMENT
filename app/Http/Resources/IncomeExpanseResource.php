@@ -17,15 +17,15 @@ class IncomeExpanseResource extends JsonResource
         return [
 
         "id"=>$this->id,
-        "Qiymati"=>$this->value,
-        "Valyuta_turi`"=>$this->currency,
-        "Xarajat_turi"=>$this->user_types->title,
-        "Xarajat_Izohi"=>$this->comment,
-        "Xarajat_yaratgan_foydalanuvchi"=>$this->user_income->full_name,
+        "qiymati"=>$this->value,
+        "valyuta_turi"=>$this->currency,
+        "kategoriyasi"=>$this->user_types->title,
+        "nomi_izohi"=>$this->comment,
+        "foydalanuvchi_ismi"=>$this->user_income->full_name,
         "Xarajat_yaratilgan_vaqt"=>$this->dateTime,
         "Faol_yoki_Nafaolligi"=> $this->active,
-        "Yaratilgan_sanasi"=>$this->created_at->format('d.m.Y H:i:s'),
-        "O'zgartirilgan_sana"=> $this->updated_at->format('d.m.Y H:i:s')
+        "yaratilgan_sana"=>$this->created_at->format('d.m.Y H:i:s'),
+        "ozgartirilgan_sana"=> $this->updated_at->format('d.m.Y H:i:s')
         ];
     }
 }

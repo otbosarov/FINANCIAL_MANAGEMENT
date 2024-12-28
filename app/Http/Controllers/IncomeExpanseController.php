@@ -21,10 +21,12 @@ class IncomeExpanseController extends Controller
     public function __construct(protected IncomeExpanseInterface $incomeExpanseRepo){}
     public function index()
     {
+      //if(!($this->check('category', 'show'))) return response()->json(["message" => "Amaliyotga huquq yo'q"], 403);
         return $this -> incomeExpanseRepo->index();
     }
     public function store(IncomeExpanceRequest $request)
     {
+      // if(!($this->check('category', 'add'))) return response()->json(["message" => "Amaliyotga huquq yo'q"], 403);
         return $this->incomeExpanseRepo->store($request);
     }
 

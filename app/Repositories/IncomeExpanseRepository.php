@@ -16,14 +16,11 @@ class IncomeExpanseRepository implements IncomeExpanseInterface
 {
     public function index()
     {
-
-        //  if(!($this->check('category', 'show'))) return response()->json(["message" => "Amaliyotga huquq yo'q"], 403);
-
         $search = request('search');
         $isInput = request('isInput');  // input output
         $startDate = request('startDate');
         $endDate = request('endDate');
-        $id = request('type_id');
+        $id_type = request('type_id');
         $income =  IncomeExpanse::select(
             'income_expanses.id',
             'income_expanses.value',
@@ -50,8 +47,8 @@ class IncomeExpanseRepository implements IncomeExpanseInterface
                     $endDate
                 ]);
             })
-            ->when($id,function($query)use($id){
-                $query->where('id',$id);
+            ->when ($id_type,function($query)use($id_type){
+                $query->where('types.id',$id_type);
             })
 
             ->where('income_expanses.user_id', Auth::user()->id)
@@ -62,8 +59,7 @@ class IncomeExpanseRepository implements IncomeExpanseInterface
     }
     public function store(IncomeExpanceRequest $request)
     {
-        //  if(!($this->check('category', 'add'))) return response()->json(["message" => "Amaliyotga huquq yo'q"], 403);
-        try {
+       try {
             DB::beginTransaction();
             IncomeExpanse::create([
                 'value' => $request->value,
