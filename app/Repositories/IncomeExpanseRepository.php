@@ -54,6 +54,7 @@ class IncomeExpanseRepository implements IncomeExpanseInterface
             ->where('income_expanses.user_id', Auth::user()->id)
             ->join('types', 'types.id', '=', 'income_expanses.type_id')
             ->join('users', 'users.id', '=', 'income_expanses.user_id')
+            ->orderByDesc('id')
             ->paginate(env('PG'));
         return ExpansesResource::collection($income);
     }
