@@ -56,7 +56,8 @@ class IncomeExpanseRepository implements IncomeExpanseInterface
             ->join('users', 'users.id', '=', 'income_expanses.user_id')
             ->orderByDesc('id')
             ->paginate(env('PG'));
-        return ExpansesResource::collection($income);
+          return ExpansesResource::collection($income);
+
     }
     public function store(IncomeExpanceRequest $request)
     {

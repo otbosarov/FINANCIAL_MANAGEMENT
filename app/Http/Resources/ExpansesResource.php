@@ -19,7 +19,7 @@ class ExpansesResource extends JsonResource
             'qiymati' => $this->value,
             'valyuta_turi' => $this->currency,
             'katagoriyasi' => $this->title,
-            'kirim_chiqim' => $this->is_input,
+            'turi' => $this->is_input,
             'izohi' => $this->comment,
             'foydalanuvchi' => $this->full_name,
             'yaratilgan_sana' => $this->created_at->format('Y-m-d'),
