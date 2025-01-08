@@ -18,7 +18,7 @@ class TypeResource extends JsonResource
             'id' =>$this->id,
             'title'=>$this->title,
             'user'=>$this->user_type->full_name,
-            'kirim_chiqim '=>$this->is_input,
+            'kirim_chiqim'=>$this->is_input,
             'active'=>$this->active
         ];
     }

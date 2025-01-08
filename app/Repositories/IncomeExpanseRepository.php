@@ -17,51 +17,44 @@ class IncomeExpanseRepository implements IncomeExpanseInterface
     public function index()
     {
         $search = request('search');
-        $isInput = request('isInput');  // input output
-        $startDate = request('startDate');
-        $endDate = request('endDate');
+        $isInput = request('is_input'); // input output
+        $dates = request('dates', []);
         $id_type = request('type_id');
         $income =  IncomeExpanse::select(
-            'income_expanses.id',
-            'income_expanses.value',
-            'income_expanses.currency',
+            'income_expanses.*',
             'types.title',
-            'income_expanses.comment',
             'types.is_input',
             'users.full_name',
-            'income_expanses.created_at',
-            'income_expanses.updated_at',
         )
+            ->join('types', 'types.id', 'income_expanses.type_id')
+            ->join('users', 'users.id', 'income_expanses.user_id')
             ->when(function ($query) use ($search) {
                 if ($search) {
                     $query->where('types.title', 'LIKE', "%$search%")
                         ->orWhere('income_expanses.comment', 'LIKE', "%$search%");
                 }
             })
-            ->when($isInput, function ($query) use ($isInput) {
-                $query->where('types.is_input', $isInput == 'input');
+            ->when($dates, function ($query) use ($dates) {
+                $query->whereBetween('income_expanses.created_at', $dates);
             })
-            ->when($startDate, function ($query) use ($startDate, $endDate) {
-                $query->whereBetween('income_expanses.created_at', [
-                    $startDate,
-                    $endDate
-                ]);
+            ->when($id_type, function ($query) use ($id_type) {
+                $query->where('types.id', $id_type);
             })
-            ->when ($id_type,function($query)use($id_type){
-                $query->where('types.id',$id_type);
+            ->when($isInput == 'input',function($query){
+                $query->where('types.is_input',operator: true);
+            })
+            ->when($isInput == 'output', function($query){
+                $query->where('types.is_input',false);
             })
 
             ->where('income_expanses.user_id', Auth::user()->id)
-            ->join('types', 'types.id', '=', 'income_expanses.type_id')
-            ->join('users', 'users.id', '=', 'income_expanses.user_id')
-            ->orderByDesc('id')
+            ->orderByDesc('income_expanses.id')
             ->paginate(env('PG'));
-          return ExpansesResource::collection($income);
-
+        return ExpansesResource::collection($income);
     }
     public function store(IncomeExpanceRequest $request)
     {
-       try {
+        try {
             DB::beginTransaction();
             IncomeExpanse::create([
                 'value' => $request->value,

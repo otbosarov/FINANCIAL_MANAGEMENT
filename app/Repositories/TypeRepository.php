@@ -43,7 +43,6 @@ class TypeRepository implements TypeInterface{
     public function get_all()
     {
         $types =  Type::where('active', '=', true)
-        ->where('user_id',auth()->id())
             ->get();
         return response()->json(["data" => $types],200);
     }
