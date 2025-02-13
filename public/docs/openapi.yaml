@@ -1,0 +1,409 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/user/register:
+    post:
+      summary: ''
+      operationId: postApiUserRegister
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 50 characters.'
+                  example: vzftliv
+                  nullable: false
+                username:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 60 characters.'
+                  example: jorxiyocjnwlplospqyi
+                  nullable: false
+                password:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 50 characters.'
+                  example: '|vJIZJfB0eunp|{%:'
+                  nullable: false
+                phone:
+                  type: string
+                  description: 'Must start with one of <code>+998</code> Must be 17 characters.'
+                  example: cwluxwzjumonsnury
+                  nullable: false
+              required:
+                - full_name
+                - username
+                - password
+                - phone
+      security: []
+  /api/user/login:
+    post:
+      summary: ''
+      operationId: postApiUserLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 60 characters.'
+                  example: iiuwmsvobgfhwijy
+                  nullable: false
+                password:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 50 characters.'
+                  example: ',mN_E>}]$R'
+                  nullable: false
+              required:
+                - username
+                - password
+      security: []
+  '/api/user/update/{id}':
+    put:
+      summary: ''
+      operationId: putApiUserUpdateId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 50 characters.'
+                  example: nbewsatvfmgofgdgxh
+                  nullable: false
+                password:
+                  type: string
+                  description: 'Must be at least 3 characters.'
+                  example: ']Dm=D9'
+                  nullable: false
+                phone:
+                  type: string
+                  description: 'Must start with one of <code>+998</code> Must be 17 characters.'
+                  example: rwhuhnaurmiwfrxil
+                  nullable: false
+              required:
+                - full_name
+                - password
+                - phone
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the update.'
+        example: dignissimos
+        required: true
+        schema:
+          type: string
+  /api/auth/user:
+    get:
+      summary: ''
+      operationId: getApiAuthUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/type/show:
+    get:
+      summary: ''
+      operationId: getApiTypeShow
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/create/type:
+    post:
+      summary: ''
+      operationId: postApiCreateType
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 60 characters.'
+                  example: coupsjtyumpkhkrmtdhvwla
+                  nullable: false
+                is_input:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+              required:
+                - title
+                - is_input
+      security: []
+  '/api/type/update/{id}':
+    put:
+      summary: ''
+      operationId: putApiTypeUpdateId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 60 characters.'
+                  example: eprpdkbjdcbl
+                  nullable: false
+                is_input:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+              required:
+                - title
+                - is_input
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the update.'
+        example: sed
+        required: true
+        schema:
+          type: string
+  /api/get_all/type:
+    get:
+      summary: ''
+      operationId: getApiGet_allType
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/change_active/type/{id}':
+    put:
+      summary: ''
+      operationId: putApiChange_activeTypeId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the type.'
+        example: dolores
+        required: true
+        schema:
+          type: string
+  /api/income_expanses/get:
+    get:
+      summary: ''
+      operationId: getApiIncome_expansesGet
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/income_expanses/create:
+    post:
+      summary: ''
+      operationId: postApiIncome_expansesCreate
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+                  description: 'Must not be greater than 12 characters.'
+                  example: pnqxjoqtv
+                  nullable: false
+                type_id:
+                  type: string
+                  description: ''
+                  example: non
+                  nullable: false
+                comment:
+                  type: string
+                  description: 'Must not be greater than 120 characters.'
+                  example: uaq
+                  nullable: false
+              required:
+                - value
+                - type_id
+                - comment
+      security: []
+  '/api/income_expanses/update/{id}':
+    put:
+      summary: ''
+      operationId: putApiIncome_expansesUpdateId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+                  description: ''
+                  example: non
+                  nullable: false
+                type_id:
+                  type: string
+                  description: ''
+                  example: autem
+                  nullable: false
+                comment:
+                  type: string
+                  description: ''
+                  example: voluptatum
+                  nullable: false
+              required:
+                - value
+                - type_id
+                - comment
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the update.'
+        example: et
+        required: true
+        schema:
+          type: string
+tags:
+  -
+    name: Endpoints
+    description: ''
